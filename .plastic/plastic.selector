@@ -1,0 +1,4 @@
+repository "Primeiro Jogo@VuKKzin@cloud"
+  path "/"
+    br "/main"
+    co "/main"

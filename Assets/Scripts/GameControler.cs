@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GameControler : MonoBehaviour
+{
+    public int totalScore;
+    public TextMeshProUGUI scoreText;
+
+    public static GameControler instance;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        instance= this;
+    }
+
+    public void UpdateScoreText()
+    {
+        scoreText.text = totalScore.ToString();
+    }
+}
