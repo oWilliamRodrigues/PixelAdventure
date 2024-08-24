@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rig;
     private Animator anim;
+
+    bool isBlowing;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +55,7 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") )
+        if (Input.GetButtonDown("Jump") && !isBlowing)
         {
             if (!isJumping)
             {
@@ -75,9 +78,19 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
        if(collision.gameObject.layer == 8)
-        {
+       {
             isJumping = false;
             anim.SetBool("jump", false);
+       }
+       if (collision.gameObject.tag == "Spikes")
+       {
+            GameControler.instance.ShowGameOver();
+            Destroy(gameObject);
+       }
+        if (collision.gameObject.tag == "Saw")
+        {
+            GameControler.instance.ShowGameOver();
+            Destroy(gameObject);
         }
     }
 
@@ -86,6 +99,22 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 8)
         {
             isJumping= true;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Fan")
+        {
+            isBlowing= true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Fan")
+        {
+            isBlowing = false;
         }
     }
 }
