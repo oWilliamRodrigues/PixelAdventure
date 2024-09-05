@@ -1022,7 +1022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6677459152376079067, guid: 9f78ee544ad1cf54f95513d9e3634a16, type: 3}
       propertyPath: lvlName
-      value: Main Menu
+      value: End_Game
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
